@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <form  action="FetchData" method="POST" autocomplete="off">
+      {% csrf_token %}
+   
+      <div class="userInput">
+        <label>Enter the UserID :</label>
+        <input type="text" name="userid">
+      </div>
+
+      {% if datas %}
+      <div class="files">
+        <label for="dropdown">Choose the files:</label>
+        
+        <select id="dropdown" name="dropdown">
+          <option value="option1">Choose file</option>
+          {% for data in datas %}
+          <option value="option2" name="chosefile">{{data.fileName}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% for data in file %}
+      <div class="columnList">
+        <h2>Choose ColumnList:</h2>
+    
+       
+        <ul>
+          <li><input type="checkbox" id="item1" name="items" value="item1"><label for="item1">{{data.fileName}}</label></li>
+          <li><input type="checkbox" id="item2" name="items" value="item2"><label for="item2">{{data.createdTimeStamp}}</label></li>
+          <li><input type="checkbox" id="item3" name="items" value="item3"><label for="item3">{{data.fileExtention}}</label></li>
+          
+        </ul>
+        {% endfor %}
+    
+      </div>
+      {% endif %}
+
+    <div class="btn"> 
+         <input type="submit" value="submit">
+       </div>
+
+      
+</form>
+
+    </div>
+</body>
+</html>
